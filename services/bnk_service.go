@@ -1,4 +1,4 @@
-package main
+package services
 
 import (
 	"encoding/json"
@@ -15,7 +15,7 @@ func NewBNKService() *BNKService {
 	return &BNKService{}
 }
 
-func (s *BNKService) getBNKMembers(r request.IRequester) ([]*members.Member, error) {
+func (s *BNKService) GetBNKMembers(r request.IRequester) ([]*members.Member, error) {
 	body, err := r.Get("https://raw.githubusercontent.com/whs/bnk48json/master/bnk48.json")
 	if err != nil {
 		return nil, errors.New("Error Request:" + err.Error())

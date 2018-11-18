@@ -4,10 +4,12 @@ import (
 	"fmt"
 
 	"github.com/heart/play-with-go/request"
+	"github.com/heart/play-with-go/services"
 )
 
 func main() {
-	mems, e := NewBNKService().getBNKMembers(request.NewRequester())
+	bnkService := services.NewBNKService()
+	mems, e := bnkService.GetBNKMembers(request.NewRequester())
 
 	if e == nil {
 		for _, m := range mems {

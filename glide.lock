@@ -1,5 +1,5 @@
-hash: da20176400efda99a5542f5eadfc7c0b209ec51ed18c8e41802ca141c7f436aa
-updated: 2018-11-18T13:37:37.882391+07:00
+hash: fa564d708d6f7b4806470fc1ca2cd22f4b140fbf1d89bce09eaae11f9a30e90b
+updated: 2018-11-18T15:00:54.165936+07:00
 imports:
 - name: github.com/go-redis/redis
   version: b3d9bf10f6666b2ee5100a6f3f84f4caf3b4e37d
@@ -9,6 +9,10 @@ imports:
   version: a578a48e8d6ca8b01a3b18314c43c6716bb5f5a3
 - name: github.com/pkg/errors
   version: 059132a15dd08d6704c67711dae0cf35ab991756
+- name: github.com/stretchr/testify
+  version: f35b8ab0b5a2cef36673838d662e249dd9c94686
+  subpackages:
+  - assert
 - name: golang.org/x/net
   version: adae6a3d119ae4890b46832a2e88a95adc62b8e7
   subpackages:
