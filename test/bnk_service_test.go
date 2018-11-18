@@ -1,6 +1,7 @@
 package test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/heart/play-with-go/services"
@@ -75,6 +76,40 @@ func (ts *BNKServiceTestSuite) TestGetBNKMembers_GivenJSON_ExpectMembers() {
 
 		is.Equal("CHRISTIN", mems[1].EnglishFirstName)
 		is.Equal("LARSEN", mems[1].EnglishLastName)
+	}
+
+	requester.AssertExpectations(ts.T())
+}
+
+func (ts *BNKServiceTestSuite) TestGetBNKMembers_GivenJSON_ExpectError404() {
+	requester := mock.NewMockRequester()
+	requester.On("Get",
+		"https://raw.githubusercontent.com/whs/bnk48json/master/bnk48.json").
+		Return("", fmt.Errorf("Mock Error"))
+
+	bnkSvc := services.NewBNKService()
+	mems, err := bnkSvc.GetBNKMembers(requester)
+
+	is := assert.New(ts.T())
+	if is.Nil(mems) {
+		is.Equal("Error Request:Mock Error", err.Error())
+	}
+
+	requester.AssertExpectations(ts.T())
+}
+
+func (ts *BNKServiceTestSuite) TestGetBNKMembers_GivenJSON_ExpectJsonFormatError() {
+	requester := mock.NewMockRequester()
+	requester.On("Get",
+		"https://raw.githubusercontent.com/whs/bnk48json/master/bnk48.json").
+		Return("<Invalid JSON>", nil)
+
+	bnkSvc := services.NewBNKService()
+	mems, err := bnkSvc.GetBNKMembers(requester)
+
+	is := assert.New(ts.T())
+	if is.Nil(mems) {
+		is.Equal("Error JSON:invalid character '<' looking for beginning of value", err.Error())
 	}
 
 	requester.AssertExpectations(ts.T())
