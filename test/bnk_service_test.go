@@ -85,14 +85,14 @@ func (ts *BNKServiceTestSuite) TestGetBNKMembers_GivenJSON_ExpectError404() {
 	requester := mock.NewMockRequester()
 	requester.On("Get",
 		"https://raw.githubusercontent.com/whs/bnk48json/master/bnk48.json").
-		Return("", fmt.Errorf("Mock Error"))
+		Return("", fmt.Errorf("HTTP Error code 404"))
 
 	bnkSvc := services.NewBNKService()
 	mems, err := bnkSvc.GetBNKMembers(requester)
 
 	is := assert.New(ts.T())
 	if is.Nil(mems) {
-		is.Equal("Error Request:Mock Error", err.Error())
+		is.Equal("Error Request:HTTP Error code 404", err.Error())
 	}
 
 	requester.AssertExpectations(ts.T())

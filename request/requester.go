@@ -31,7 +31,7 @@ func (r *Requester) Get(url string) (string, error) {
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		return body, fmt.Errorf("HTTP Error code=%d", resp.StatusCode)
+		return body, fmt.Errorf("HTTP Error code %d", resp.StatusCode)
 	}
 
 	return body, nil
