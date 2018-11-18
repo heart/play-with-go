@@ -8,13 +8,15 @@ import (
 	"github.com/heart/play-with-go/request"
 )
 
-//BNKService
+//BNKService struct
 type BNKService struct{}
 
+//NewBNKService use to new NewBNKService object
 func NewBNKService() *BNKService {
 	return &BNKService{}
 }
 
+//GetBNKMembers is function to request json and return array of BNK member struct
 func (s *BNKService) GetBNKMembers(r request.IRequester) ([]*members.Member, error) {
 	body, err := r.Get("https://raw.githubusercontent.com/whs/bnk48json/master/bnk48.json")
 	if err != nil {
