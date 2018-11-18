@@ -6,22 +6,27 @@ import (
 	"github.com/heart/play-with-go/members"
 )
 
-func main() {
-	str := ""
-	str = fmt.Sprintf("%s, %s!", "Hello", "World")
-	fmt.Println(str)
-
-	m := &members.Member{
-		ID:      "0",
-		Name:    "Narongrit Kanhanoi",
-		Email:   "nkheart4@gmail.com",
-		Enabled: true,
+func login(member members.ILogin) bool {
+	uname := member.Email()
+	pass := member.Password()
+	if uname == "nkheart4@gmail.com" && pass == "password" {
+		return true
 	}
-	str = fmt.Sprintf("member : %v", m)
-	fmt.Println(str)
+	return false
+}
 
-	m2 := m.Copy()
-	m2.Name = "Heart"
-	str = fmt.Sprintf("m = %v\nm2 = %v", m, m2)
-	fmt.Println(str)
+func main() {
+	m := &members.Member{
+		ID:           "0",
+		Name:         "Narongrit Kanhanoi",
+		UserEmail:    "nkheart4@gmail.com",
+		UserPassword: "password",
+		Enabled:      true,
+	}
+	pass := login(m)
+	if pass {
+		fmt.Println("Login Success")
+	} else {
+		fmt.Println("Login Fail")
+	}
 }
