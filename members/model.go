@@ -6,23 +6,21 @@ type ILogin interface {
 	Password() string
 }
 
-//Member : struct to represent member
+//Member : struct to represent BNK member
 type Member struct {
-	ID           string
-	Name         string
-	UserEmail    string
-	UserPassword string
-	Enabled      bool
-}
-
-//Email of user
-func (m *Member) Email() string {
-	return m.UserEmail
-}
-
-//Password of user
-func (m *Member) Password() string {
-	return m.UserPassword
+	Birthday         string   `json:"birthday"`
+	BloodType        string   `json:"blood_type"`
+	EnglishFirstName string   `json:"english_first_name"`
+	EnglishLastName  string   `json:"english_last_name"`
+	Facebook         string   `json:"facebook"`
+	Height           int      `json:"height"`
+	Hobby            string   `json:"hobby"`
+	Instagram        string   `json:"instagram"`
+	Like             []string `json:"like"`
+	Nickname         string   `json:"nickname"`
+	Province         string   `json:"province"`
+	ThaiFirstName    string   `json:"thai_first_name"`
+	ThaiLastName     string   `json:"thai_last_name"`
 }
 
 // Copy return copy of Member
